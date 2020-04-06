@@ -1,18 +1,24 @@
 {
-  "name": "next-tailwind-scss-boilerplate",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "@zeit/next-sass": "^1.0.1",
-    "next": "9.2.0",
-    "node-sass": "^4.13.1",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "tailwindcss": "^1.1.4"
-  }
+	"name": "next-tailwind-scss-boilerplate",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"@zeit/next-sass": "^1.0.1",
+		"next": "9.2.0",
+		"node-sass": "^4.13.1",
+		"react": "16.12.0",
+		"react-dom": "16.12.0",
+		"react-keydown": "^1.9.12",
+		"styled-components": "^5.0.1",
+		"tailwindcss": "^1.1.4"
+	},
+	"devDependencies": {
+		"@babel/plugin-proposal-decorators": "^7.8.3",
+		"babel-plugin-styled-components": "^1.10.7"
+	}
 }
