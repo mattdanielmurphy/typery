@@ -2,61 +2,33 @@ import React, { useEffect, useState } from 'react'
 import Keyboard from './Keyboard'
 import TextDisplay from './TextDisplay'
 import watchKeys from './logic/watchKeys'
+import checkInput from './logic/checkInput'
 
-const App = () => {
+const defaultTextObject = {
+	text: [ 'sentence 1', 'sentence 2' ],
+	currentCharIndex: 0,
+	currentChar: 's',
+	currentSentenceIndex: 0,
+	currentSentence: 'sentence 1'
+}
+
+const App = (mode = 'auto') => {
+	const [ textObject, setTextObject ] = useState(defaultTextObject)
 	const [ keysDown, setKeysDown ] = useState({})
-	const [ keysLifted, setKeysLiftedState ] = useState({})
-	const setKeysLifted = (keys, lifted = true) => {
-		const newKeysLifted = keysLifted
-		keys.forEach((key) => delete newKeysLifted[key])
-		setKeysLiftedState(newKeysLifted)
+	const [ keysUp, setKeysUpState ] = useState({})
+	const setKeysUp = (keysUp) => {
+		setKeysUpState(keysUp)
 	}
+	watchKeys(keysDown, setKeysDown, setKeysUp, keysUp, textObject, setTextObject, useEffect)
 
-	let lastKeyDown
-	let lastKeyUp
+	// checkInput(keysUp, textObject.currentChar, advanceCursor, useEffect)
 
-	const handleKeyUpAndDown = ({ key }, keyDown = true) => {
-		const keyUp = !keyDown
-
-		if (key === lastKeyDown) {
-			if (keyUp) {
-				lastKeyDown = undefined
-				if (key === lastKeyUp) {
-					lastKeyUp = undefined
-					return
-				} else {
-					console.log('key up', key)
-					lastKeyUp = key
-				}
-			}
-			return
-		}
-		if (keyDown) {
-			console.log('new key', key)
-			lastKeyDown = key
-		}
-	}
-
-	const addEventListeners = () => {
-		document.addEventListener('keydown', handleKeyUpAndDown)
-		document.addEventListener('keyup', () => handleKeyUpAndDown(event, false))
-	}
-	const removeEventListeners = () => {
-		document.removeEventListener('keydown', handleKeyUpAndDown)
-		document.removeEventListener('keyup', handleKeyUpAndDown)
-	}
-
-	useEffect(() => {
-		addEventListeners()
-		return removeEventListeners
-	})
 	return (
 		<div>
-			<TextDisplay />
-			{/* {Object.keys(keysDown).map((keyDown) => <p>{keyDown}</p>)} */}
-			<Keyboard keysDown />
+			<TextDisplay currentSentence={textObject.currentSentence} currentCharIndex={textObject.currentCharIndex} />
+			<Keyboard {...keysDown} />
 		</div>
 	)
 }
 
-export default App
+export { App as default, defaultTextObject }

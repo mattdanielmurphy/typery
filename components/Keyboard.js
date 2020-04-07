@@ -8,44 +8,52 @@ const keysQwerty = `${'`~ 1! 2@ 3# 4$ 5% 6^ 7& 8* 9( 0) -_ =+ (backspace) ' +
 
 const keys = keysQwerty
 
-const Keyboard = () => {
+const makeKey = (keys, options = {}) => {
+	let { isDouble, isSpecial, isDown } = options
+	let topKey = keys
+	let bottomKey
+	let className = 'key'
+	if (isDouble) {
+		bottomKey = String(keys[0])
+		topKey = String(keys[1])
+	}
+	const specialKeys = {
+		backspace: <span>&larr;</span>,
+		enter: <span>&#8629;</span>,
+		'shift-left': <span>shift</span>,
+		'shift-right': <span>shift</span>
+	}
+	if (isSpecial) {
+		className += ` is-${topKey}`
+		if (specialKeys[topKey]) topKey = specialKeys[topKey]
+	}
+	if (isDown) {
+		className += ' key-down'
+	}
 	return (
-		<div>
-			<div className="keyboard-container">
-				<div className="keyboard">
-					{keys.map((key) => {
-						if (/\(.*\)/.exec(key)) {
-							key = key.slice(1, -1)
-							return (
-								<div data-key={key} className={`key is-${key}`}>
-									{key === '(backspace)' ? (
-										<div className="key__bottom">&larr;</div>
-									) : key === '(enter)' ? (
-										<div className="key__bottom">&#8629;</div>
-									) : (
-										<div className="key__bottom">{key}</div>
-									)}
-								</div>
-							)
-						} else if (key.length > 1) {
-							key.split('')
-							const [ bottomKey, topKey ] = key
-							return (
-								<div data-key={bottomKey} data-alt-key={topKey} className="key">
-									<div className="key__top">{topKey}</div>
-									<div className="key__bottom">{bottomKey}</div>
-								</div>
-							)
-						} else {
-							return (
-								<div data-key={key} className="key">
-									{key.toUpperCase()}
-								</div>
-							)
-						}
-					})}
-				</div>
-			</div>
+		<div key={className + topKey} data-key={topKey} data-alt-key={bottomKey} className={className}>
+			<div className="key__top">{topKey}</div>
+			{bottomKey && <div className="key__bottom">{bottomKey}</div>}
+		</div>
+	)
+}
+
+const getKey = (key, keysDown) => {
+	const isSpecial = /\(.*\)/.test(key)
+	const isDouble = key.length > 1 && !isSpecial
+
+	if (isSpecial) {
+		key = key.slice(1, -1)
+	}
+
+	const isDown = isDouble ? keysDown[key[1]] || keysDown[key[0]] : keysDown[key]
+	return makeKey(key, { isSpecial, isDouble, isDown })
+}
+
+const Keyboard = (keysDown) => {
+	return (
+		<div className="keyboard-container">
+			<div className="keyboard">{keys.map((key) => getKey(key, keysDown))}</div>
 		</div>
 	)
 }

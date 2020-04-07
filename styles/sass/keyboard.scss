@@ -13,6 +13,7 @@ $key-spacing-vertical: 5px;
 $keyboard-spacing: 16px;
 
 .keyboard-container {
+	margin-top: 2rem;
 	display: flex;
 	justify-content: center;
 }
@@ -39,7 +40,7 @@ $keyboard-spacing: 16px;
 		background: rgb(47, 71, 71);
 		color: white;
 	}
-	&.down {
+	&.key-down {
 		background: #333;
 	}
 	align-items: center;
@@ -112,8 +113,8 @@ $keyboard-spacing: 16px;
 .key__top {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: center;
 }
-.key__bottom {
+.key__top {
 	flex-grow: 1;
 }
