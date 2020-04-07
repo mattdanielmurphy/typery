@@ -2,31 +2,43 @@ import React, { useEffect, useState } from 'react'
 import Keyboard from './Keyboard'
 import TextDisplay from './TextDisplay'
 import watchKeys from './logic/watchKeys'
-import checkInput from './logic/checkInput'
+import generateText from './logic/generateText'
+import Options from './Options'
+
+// generateText is passed an alphabet object with different key weights
+
+const text = generateText({})
 
 const defaultTextObject = {
-	text: [ 'sentence 1', 'sentence 2' ],
+	text,
 	currentCharIndex: 0,
-	currentChar: 's',
+	currentChar: text[0][0],
 	currentSentenceIndex: 0,
-	currentSentence: 'sentence 1'
+	currentSentence: text[0]
+}
+
+const defaultOptions = {
+	highlightNextKey: true,
+	text
 }
 
 const App = (mode = 'auto') => {
+	const [ options, setOptionsState ] = useState(defaultOptions)
 	const [ textObject, setTextObject ] = useState(defaultTextObject)
 	const [ keysDown, setKeysDown ] = useState({})
-	const [ keysUp, setKeysUpState ] = useState({})
-	const setKeysUp = (keysUp) => {
-		setKeysUpState(keysUp)
+	const [ keysUp, setKeysUp ] = useState({})
+	const setText = (text) => setTextObject({ text, ...defaultTextObject })
+	const setOptions = (optionsObject, reloadText = false) => {
+		if (reloadText) setText(optionsObject.text)
+		setOptionsState(optionsObject)
 	}
 	watchKeys(keysDown, setKeysDown, setKeysUp, keysUp, textObject, setTextObject, useEffect)
-
-	// checkInput(keysUp, textObject.currentChar, advanceCursor, useEffect)
 
 	return (
 		<div>
 			<TextDisplay currentSentence={textObject.currentSentence} currentCharIndex={textObject.currentCharIndex} />
 			<Keyboard {...keysDown} />
+			<Options {...options} {...setOptions} />
 		</div>
 	)
 }

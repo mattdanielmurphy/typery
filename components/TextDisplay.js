@@ -13,7 +13,6 @@ const CurrentLetter = styled.span`color: firebrick;`
 const CurrentSpace = styled.span`border-bottom: 2px solid red;`
 
 const TextDisplay = ({ currentSentence, currentCharIndex }) => {
-	console.log(currentSentence)
 	const characters = currentSentence ? currentSentence.split('') : []
 	return (
 		<div>

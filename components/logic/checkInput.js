@@ -6,17 +6,16 @@ const advanceCursor = (textObject, setTextObject) => {
 	const endOfSentence = textObject.currentSentence.length - 1 === textObject.currentCharIndex
 	if (endOfSentence) {
 		if (endOfText) {
-			console.log('end of text')
 			setTextObject(defaultTextObject)
+		} else {
+			setTextObject({
+				...textObject,
+				currentSentenceIndex: textObject.currentSentenceIndex + 1,
+				currentSentence: textObject.text[textObject.currentSentenceIndex + 1],
+				currentCharIndex: 0,
+				currentChar: textObject.text[textObject.currentSentenceIndex + 1][0]
+			})
 		}
-		console.log('END')
-		setTextObject({
-			...textObject,
-			currentSentenceIndex: textObject.currentSentenceIndex + 1,
-			currentSentence: textObject.text[textObject.currentSentenceIndex + 1],
-			currentCharIndex: 0,
-			currentChar: textObject.text[textObject.currentSentenceIndex + 1][0]
-		})
 	} else {
 		const currentCharIndex = textObject.currentCharIndex + 1
 		const currentChar = textObject.currentSentence[currentCharIndex]

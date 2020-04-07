@@ -46,7 +46,7 @@ $keyboard-spacing: 16px;
 	align-items: center;
 	background-color: $color-key;
 	border-radius: $key-radius;
-	cursor: pointer;
+	cursor: default;
 	display: flex;
 	flex-direction: column;
 	grid-column-end: span 4;
@@ -81,7 +81,7 @@ $keyboard-spacing: 16px;
 	&.is-capslock {
 		grid-column-end: span 7;
 	}
-	&.is-shift-left {
+	&.is-shiftleft {
 		grid-column-end: span 9;
 	}
 	&.is-enter {
@@ -99,7 +99,7 @@ $keyboard-spacing: 16px;
 	&.is-right {
 		align-items: flex-end;
 	}
-	&.is-shift-right {
+	&.is-shiftright {
 		grid-column-end: span 9;
 	}
 	&.is-space {

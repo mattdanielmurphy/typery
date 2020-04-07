@@ -3,7 +3,6 @@ import checkInput from './checkInput'
 
 function watchKeys(keysDown, setKeysDown, setKeysUp, keysUp, textObject, setTextObject, useEffect) {
 	const setKeyDown = (key) => {
-		console.log(key)
 		checkInput(key, textObject, setTextObject)
 		setKeysDown({ [key]: true, ...keysDown })
 	}
