@@ -3,14 +3,14 @@ import App from '../components/App'
 import AppContainer from '../containers/AppContainer'
 import PageContainer from '../containers/PageContainer'
 
-const config = { mode: 'auto' }
+const config = { mode: 'custom' }
 
-const Auto = (props) => (
-	<PageContainer title="Auto-Generated Text Mode">
+const Custom = (props) => (
+	<PageContainer title="Custom Text Mode">
 		<AppContainer>
 			<App config={config} />
 		</AppContainer>
 	</PageContainer>
 )
 
-export default Auto
+export default Custom

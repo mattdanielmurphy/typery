@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
+import { useTheme } from '../components/ThemeContext'
+import ToggleNightModeButton from '../components/ToggleNightModeButton'
 
 const links = [
 	{ href: 'multiplayer', label: 'Multiplayer Mode' },
@@ -11,47 +13,53 @@ const links = [
 	key: `nav-link-${link.href}-${link.label}`
 }))
 
-const Nav = () => (
-	<nav>
-		<ul>
-			{links.map(({ key, href, label }) => (
-				<li key={key}>
-					<Link href={href}>
-						<a href={href}>{label}</a>
-					</Link>
+const Nav = (props) => {
+	const themeToggle = useTheme()
+
+	return (
+		<NavContainer {...props}>
+			<ul>
+				<li>
+					<ToggleNightModeButton theme={props.theme} themeToggle={themeToggle} />
 				</li>
-			))}
-		</ul>
+				{links.map(({ key, href, label }) => (
+					<li key={key}>
+						<Link href={href}>
+							<a href={href}>{label}</a>
+						</Link>
+					</li>
+				))}
+			</ul>
+		</NavContainer>
+	)
+}
+const UnstyledNavContainer = (props) => <nav {...props} />
 
-		<style jsx>{`
-			:global(body) {
-				margin: 0;
-				font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
-			}
-			nav {
-				text-align: center;
-			}
-			ul {
-				display: flex;
-				justify-content: space-between;
-			}
-			nav > ul {
-				padding: 4px 16px;
-			}
-			li {
-				display: flex;
-				padding: 6px 8px;
-			}
-			a {
-				color: black;
-				text-decoration: none;
-				font-size: 13px;
-				font-family: monospace;
-				padding: .5em .7em .3em .7em;
-				border-radius: .4em;
-			}
-		`}</style>
-	</nav>
-)
+const NavContainer = styled(UnstyledNavContainer)`
+	text-align: center;
+	margin-bottom: 4em;
+	ul {
+		display: flex;
+		justify-content: space-between;
+	}
+	nav > ul {
+		padding: 4px 16px;
+	}
+	li {
+		display: flex;
+		padding: 6px 8px;
+	}
+	a {
+		color: ${(props) => props.theme.textColor};
+		text-decoration: none;
+		font-size: 13px;
+		padding: 1.4em 1.6em 1.4em 1.6em;
+		text-transform: uppercase;
+		letter-spacing: .05em;
+		font-weight: 700;
+		border-radius: .4em;
+		background: ${(props) => props.theme.textColor};
+	}
+`
 
-export default Nav
+export default withTheme(Nav)

@@ -1,27 +1,71 @@
-// @import "~tailwindcss/base";
-// @import "~tailwindcss/components";
-// @import "~tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
 
-// $primary-color: #482ff7;
-// $secondary-color: #fc5c9c;
+body,
+html {
+	font-family: 'Inter', sans-serif;
+	margin: 0;
+	min-height: 100%;
+}
 
-// body {
-// 	// color: $primary-color;
-// 	@apply text-base antialiased;
+.hero {
+	width: 100%;
+	color: #333;
+}
+.title {
+	margin: 0;
+	width: 100%;
+	padding-top: 80px;
+	line-height: 1.15;
+	font-size: 48px;
+}
+.title,
+.description {
+	text-align: center;
+}
+
+// textarea {
+// 	background: rgba(0, 0, 0, 0.2);
+// 	border: 2px solid white;
+// 	border-radius: 5px;
 // }
 
 // h1 {
-// 	color: $secondary-color;
+// 	font-weight: 700;
+// 	font-size: 3em;
+// 	color: #35fc4f;
+// 	padding: .5em 1em;
+// 	text-align: left;
 // }
 
-// // buttonsUI
-// .btn {
-// 	@apply inline-block px-24 py-8 rounded text-white;
-// }
-// .btn--primary {
-// 	@apply bg-black text-white border border-black;
+// button {
+// 	@include font;
+// 	background: black;
+// 	color: white;
+// 	text-transform: uppercase;
+// 	font-size: 1.5em;
+// 	font-weight: 400;
+// 	padding: 10px 20px;
+// 	border: 2px solid white;
+// 	border-radius: 5px;
+// 	vertical-align: top;
+// 	margin: 10px;
+// 	transition: .2s ease-in-out;
+// 	&:hover {
+// 		color: white;
+// 		cursor: pointer;
+// 	}
 // }
 
-// .btn--white {
-// 	@apply bg-white border border-white text-black;
+// #options {
+// 	margin: 0 auto;
+// 	text-align: center;
+// 	max-width: 1400px;
+// 	textarea {
+// 		width: 100%;
+// 		max-width: 800px;
+// 		@include font;
+// 		color: white;
+// 		font-size: 1em;
+// 		padding: 1em;
+// 	}
 // }

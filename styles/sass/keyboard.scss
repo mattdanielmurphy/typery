@@ -1,28 +1,26 @@
-$color-black: #000;
-$color-white: #fff;
+$black: #000;
+$white: #fff;
 
-$color-key: mix($color-black, $color-white, 87%);
-$color-keyboard: mix($color-black, $color-white, 60%);
-$color-text: $color-white;
+$color-key: mix($black, $white, 87%);
+$color-text: $white;
 
-$key-radius: 4px;
-$key-size: 64px;
-$key-gutter: 4px;
-$key-spacing-horizontal: 9px;
-$key-spacing-vertical: 5px;
-$keyboard-spacing: 16px;
+$key-radius: 3px;
+$key-size: 70px;
+$key-gutter: 8px;
+$key-spacing-horizontal: 17px;
+$key-spacing-vertical: 9px;
+$keyboard-spacing: 1em 2em;
 
 .keyboard-container {
-	margin-top: 2rem;
+	margin: 4em;
 	display: flex;
 	justify-content: center;
 }
 .keyboard {
-	background-color: $color-keyboard;
 	color: $color-text;
 	display: grid;
-	font-size: 16px;
-	font-weight: 600;
+	font-size: 1em;
+	font-family: 'Inter', sans-serif;
 	grid-template-columns: repeat(58,  ($key-size + $key-gutter) / 4);
 	grid-template-rows: repeat(10,  ($key-size + $key-gutter) / 2);
 	justify-content: center;
@@ -30,6 +28,7 @@ $keyboard-spacing: 16px;
 	line-height: 24px;
 	padding: $keyboard-spacing;
 	transform-origin: top left;
+	background: rgba(0, 0, 0, 0.5);
 }
 .key {
 	&.error {
@@ -41,10 +40,16 @@ $keyboard-spacing: 16px;
 		color: white;
 	}
 	&.key-down {
-		background: #333;
+		background: #222;
+	}
+	&.key-current {
+		background: #35fc4f;
+		color: black;
 	}
 	align-items: center;
-	background-color: $color-key;
+	color: #eee;
+	// background-color: rgba(255, 255, 255, 0.02);
+	// border: 1px solid #444;
 	border-radius: $key-radius;
 	cursor: default;
 	display: flex;
@@ -103,6 +108,7 @@ $keyboard-spacing: 16px;
 		grid-column-end: span 9;
 	}
 	&.is-space {
+		grid-column-start: 20;
 		grid-column-end: span 20;
 	}
 	&.is-tab {
