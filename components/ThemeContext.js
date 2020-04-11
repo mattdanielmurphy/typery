@@ -48,3 +48,7 @@ const Wrapper = styled.div`
 `
 
 export default ThemeProvider
+
+// Explanation:
+// https://medium.com/@rossbulat/react-dark-mode-with-styled-theming-and-context-57557de6400
+// https://github.com/rossbulat/react-theming-dark-mode/tree/master/src
