@@ -64,7 +64,7 @@ const App = ({ config }) => {
 		<div>
 			<TextDisplay currentSentence={textObject.currentSentence} currentCharIndex={textObject.currentCharIndex} />
 			<Keyboard keysDown={keysDown} currentChar={textObject.currentChar} />
-			{/* <Options config={config} options={options} setOptions={setOptions} /> */}
+			<Options config={config} options={options} setOptions={setOptions} />
 
 			<HandleKeyEvents keysDown={keysDown} setKeysDown={setKeysDown} checkInput={checkInput} />
 		</div>
