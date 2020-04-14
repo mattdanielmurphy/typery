@@ -11,8 +11,6 @@ const Home = () => (
 			<link rel="icon" href="/favicon.ico" />
 		</Head>
 
-		<Nav />
-
 		<div className="hero">
 			<h1 className="title">Welcome to Untitled Typing App</h1>
 			<p className="description">

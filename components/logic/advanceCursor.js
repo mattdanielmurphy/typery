@@ -4,7 +4,7 @@ const advanceCursor = (textObject, setTextObject) => {
 
 	if (endOfSentence) {
 		if (endOfText) {
-			setTextObject(defaultTextObject)
+			setTextObject()
 		} else {
 			// End of sentence
 			setTextObject({

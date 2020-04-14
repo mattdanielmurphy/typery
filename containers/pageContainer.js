@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Nav from '../components/Nav'
 import styled, { withTheme } from 'styled-components'
 import { MyThemeProvider, useTheme } from '../components/ThemeContext'
-import ToggleNightModeButton from '../components/ToggleNightModeButton'
 
 const PageContainer = (props) => {
 	return (
@@ -13,7 +12,7 @@ const PageContainer = (props) => {
 				{/* <link rel="icon" href="/favicon.ico" /> */}
 			</Head>
 
-			<Nav />
+			<Nav theme={props.theme} />
 			{props.children}
 		</MyThemeProvider>
 	)

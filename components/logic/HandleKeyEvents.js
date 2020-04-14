@@ -5,7 +5,6 @@ const KeyboardEventHandler = dynamic(() => import('react-keyboard-event-handler'
 
 const HandleKeyEvents = ({ keysDown, setKeysDown, checkInput }) => {
 	const handleKeyDown = (key, event) => {
-		console.log(event)
 		if (key === 'esc' || event.ctrlKey) console.log('esc')
 		else event.preventDefault()
 

@@ -9,7 +9,7 @@ $key-size: 70px;
 $key-gutter: 8px;
 $key-spacing-horizontal: 17px;
 $key-spacing-vertical: 9px;
-$keyboard-spacing: 1em 2em;
+$keyboard-spacing: 1em;
 
 .keyboard-container {
 	margin: 4em;
@@ -108,8 +108,8 @@ $keyboard-spacing: 1em 2em;
 		grid-column-end: span 9;
 	}
 	&.is-space {
-		grid-column-start: 20;
-		grid-column-end: span 20;
+		grid-column-start: 1;
+		grid-column-end: 59;
 	}
 	&.is-tab {
 		align-items: flex-start;

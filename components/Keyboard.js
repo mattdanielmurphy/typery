@@ -1,5 +1,4 @@
 import React from 'react'
-import '../styles/sass/keyboard.scss'
 
 const keysQwerty = `${'`~ 1! 2@ 3# 4$ 5% 6^ 7& 8* 9( 0) -_ =+ BackSpace ' +
 	'Tab q w e r t y u i o p [{ ]} \\| ' +
