@@ -23,12 +23,15 @@ const makeKey = (keys, options = {}) => {
 		ShiftLeft: <span>Shift</span>,
 		ShiftRight: <span>Shift</span>
 	}
+
 	if (isSpecial) {
 		className += ` is-${topKey.toLowerCase()}`
 		if (specialKeys[topKey]) topKey = specialKeys[topKey]
 	}
+
 	if (isDown) className += ' key-down'
 	if (isCurrent) className += ' key-current'
+
 	return (
 		<div key={className + topKey} data-key={topKey} data-alt-key={bottomKey} className={className}>
 			<div className="key__top">{topKey}</div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Options from './Options'
+import OptionsPanel from './OptionsPanel'
 import HandleKeyEvents from './logic/HandleKeyEvents'
 import TextDisplay from './TextDisplay'
 import Keyboard from './Keyboard'
@@ -23,11 +23,12 @@ const defaultTextObject = {
 }
 
 const defaultOptions = {
-	highlightNextKey: true,
-	text
+	highlightNextKey: { _default: true, type: Boolean, value: true },
+	skipSpace: { _default: true, type: Boolean, value: true },
+	text: { _default: text, type: Array, value: text }
 }
 
-const App = ({ config }) => {
+const Typer = ({ config }) => {
 	const [ textObject, setTextObjectState ] = useState(defaultTextObject)
 	const [ keysDown, setKeysDown ] = useState({})
 
@@ -47,9 +48,15 @@ const App = ({ config }) => {
 		}
 	}
 	const checkInput = (key) => {
+		const nextChar = textObject.currentSentence[textObject.currentCharIndex + 1]
+
 		if (key === 'space') key = ' '
 		if (key === textObject.currentChar) {
-			advanceCursor(textObject, setTextObject)
+			if (options.skipSpace && nextChar === ' ') {
+				advanceCursor(textObject, setTextObject, { advanceTwice: true })
+			} else {
+				advanceCursor(textObject, setTextObject)
+			}
 		}
 	}
 
@@ -64,11 +71,11 @@ const App = ({ config }) => {
 		<div>
 			<TextDisplay currentSentence={textObject.currentSentence} currentCharIndex={textObject.currentCharIndex} />
 			<Keyboard keysDown={keysDown} currentChar={textObject.currentChar} />
-			<Options config={config} options={options} setOptions={setOptions} />
+			<OptionsPanel config={config} options={options} setOptions={setOptions} />
 
 			<HandleKeyEvents keysDown={keysDown} setKeysDown={setKeysDown} checkInput={checkInput} />
 		</div>
 	)
 }
 
-export { App as default }
+export { Typer as default }
