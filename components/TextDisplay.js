@@ -20,8 +20,8 @@ const TextDisplay = ({ currentSentence, currentCharIndex }) => {
 
 const Text = styled.div`
 	max-width: 800px;
-	margin: 0 auto;
-	font-size: 2em;
+	margin: 1em auto;
+	font-size: 1.8em;
 	font-family: 'Lucida Console', Monaco, monospace;
 `
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import formatInputtedText from './logic/formatInputtedText'
-import { green, grey, borderRadius } from './theme'
+import { green, grey, borderRadius, textColor } from './theme'
 import styled from 'styled-components'
 
 const Checkbox = styled((props) => <input type="checkbox" {...props} />)`
@@ -56,10 +56,8 @@ const Option = (props) => {
 
 const OptionsContainer = styled.div`
 	margin: 0 auto;
-	max-width: 800px;
+	max-width: 60em;
 	justify-content: center;
-	border-radius: ${borderRadius};
-	background: ${grey};
 	padding: 3em;
 	padding-left: 4em;
 	h1 {
@@ -83,13 +81,9 @@ const OptionsPanel = ({ options, setOptions, config }) => {
 
 export default OptionsPanel
 
-{
-	/* {config.mode === 'custom' && (
-	<textarea name="textInput" id="custom-text-input" cols="50" rows="10" onChange={handleChange} />
-)}
-<button onClick={handleClick}>Submit</button> */
-}
-
+// {config.mode === 'custom' && <textarea name="textInput" id="custom-text-input" cols="50" rows="10" onChange={handleChange} />}
+// <button onClick={handleClick}>Submit</button>
+//
 // const handleClick = (e) => {
 // 	const inputtedText = document.getElementById('custom-text-input').value
 // 	const text = formatInputtedText(inputtedText, 40)

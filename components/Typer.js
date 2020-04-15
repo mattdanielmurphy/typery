@@ -23,9 +23,9 @@ const defaultTextObject = {
 }
 
 const defaultOptions = {
-	highlightNextKey: { _default: false, type: 'Boolean', value: false },
-	skipSpace: { _default: true, type: 'Boolean', value: true },
-	text: { _default: text, type: 'Array', value: text, scope: 'custom' }
+	highlightNextKey: { type: 'Boolean', value: false },
+	skipSpace: { type: 'Boolean', value: true },
+	text: { type: 'Array', value: text, scope: 'custom' } // scope is mode that this option will appear in
 }
 
 const Typer = ({ config }) => {
@@ -53,7 +53,6 @@ const Typer = ({ config }) => {
 		if (key === 'space') key = ' '
 		if (key === textObject.currentChar) {
 			if (options.skipSpace.value === true && nextChar === ' ') {
-				console.log('skip space', options)
 				advanceCursor(textObject, setTextObject, { advanceTwice: true })
 			} else {
 				advanceCursor(textObject, setTextObject)

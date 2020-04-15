@@ -53,9 +53,10 @@ const makeKey = (key, index, options = {}) => {
 
 	const specialKeys = {
 		BackSpace: <span>&larr;</span>,
-		Enter: <span>&#8629;</span>,
-		ShiftLeft: <span>Shift</span>,
-		ShiftRight: <span>Shift</span>
+		Enter: <span style={{ fontFamily: 'Helvetica' }}>&#8629;</span>,
+		ShiftLeft: 'Shift',
+		ShiftRight: 'Shift',
+		CapsLock: 'Caps Lock'
 	}
 
 	if (isSpecial) {
@@ -79,13 +80,15 @@ const getKey = (key, index, keysDown, currentChar, highlightCurrentKey) => {
 }
 
 const KeyboardContainer = styled.div`
+	display: flex;
 	.keyboard {
-		padding: 1em 2.5em;
+		padding: 1.5em;
 		background: ${grey};
 		color: ${textColor};
 		border-radius: ${borderRadius};
+		margin: 2em auto;
+		box-sizing: border-box;
 	}
-	max-width: 800px;
 `
 
 const KeyRowWrapper = styled.div`
