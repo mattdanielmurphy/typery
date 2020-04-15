@@ -85,6 +85,7 @@ const KeyboardContainer = styled.div`
 		color: ${textColor};
 		border-radius: ${borderRadius};
 	}
+	max-width: 800px;
 `
 
 const KeyRowWrapper = styled.div`

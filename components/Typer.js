@@ -7,7 +7,6 @@ import generateText from './logic/generateText'
 import formatInputtedText from './logic/formatInputtedText'
 import advanceCursor from './logic/advanceCursor'
 import styled from 'styled-components'
-import '../styles/sass/keyboard.scss'
 
 const focusLetter = ''
 const minLength = 3
