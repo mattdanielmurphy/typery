@@ -16,4 +16,8 @@ export const grey = theme('mode', {
 	light: 'rgba(0,0,0,0.05)',
 	dark: 'rgba(0,0,0,0.12)'
 })
+export const modalBackgroundColor = theme('mode', {
+	light: 'rgba(240, 240, 240, 0.9)',
+	dark: 'rgba(30, 30, 30, 0.9)'
+})
 export const borderRadius = '0.4em'

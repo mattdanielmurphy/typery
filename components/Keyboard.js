@@ -26,6 +26,7 @@ const KeyWrapper = styled.div`
 	justify-content: center;
 	padding: 0.7em 1.4em 0.8em 1.4em;
 	margin: .1em;
+	font-weight: 700;
 	color: ${({ isDown, isCurrent, highlightCurrentKey }) => {
 		if (isCurrent && highlightCurrentKey) {
 			return backgroundColor

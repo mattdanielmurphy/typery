@@ -4,7 +4,7 @@ import { backgroundColor, textColor } from './theme'
 import cookies from 'next-cookies'
 
 const ThemeToggleContext = React.createContext()
-const defaultMode = 'dark'
+const defaultMode = 'light'
 
 export const useTheme = () => React.useContext(ThemeToggleContext)
 

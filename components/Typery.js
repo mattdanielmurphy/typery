@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import OptionsPanel from './OptionsPanel'
-import HandleKeyEvents from './logic/HandleKeyEvents'
 import TextDisplay from './TextDisplay'
 import Keyboard from './Keyboard'
 import generateText from './logic/generateText'
 import formatInputtedText from './logic/formatInputtedText'
 import advanceCursor from './logic/advanceCursor'
 import styled from 'styled-components'
+import { green, borderRadius, modalBackgroundColor } from './theme'
 
 const focusLetter = ''
 const minLength = 3
@@ -28,12 +28,32 @@ const defaultOptions = {
 	text: { type: 'Array', value: text, scope: 'custom' } // scope is mode that this option will appear in
 }
 
+const TyperyContainer = styled.div`
+	textarea {
+		appearance: none;
+		border: none;
+		resize: none;
+		position: absolute;
+		width: 90%;
+		left: 5%;
+		background: ${modalBackgroundColor};
+		border-radius: ${borderRadius};
+		color: ${green};
+		font-size: 4em;
+		font-weight: 700;
+		text-align: center;
+		padding: 4em 0;
+		${({ hasFocus }) =>
+			hasFocus &&
+			`
+opacity: 0;
+cursor: default;
+`};
+	}
+`
+
 const Typery = ({ config }) => {
 	const [ textObject, setTextObjectState ] = useState(defaultTextObject)
-	const [ keysDown, setKeysDown ] = useState({})
-
-	const [ options, setOptionsState ] = useState(defaultOptions)
-
 	const setTextObject = (object) => {
 		if (object) setTextObjectState(object)
 		else {
@@ -47,6 +67,18 @@ const Typery = ({ config }) => {
 			})
 		}
 	}
+	const setText = (text) => setTextObject({ text, ...defaultTextObject })
+
+	const [ keysDown, setKeysDown ] = useState({})
+	const [ options, setOptionsState ] = useState(defaultOptions)
+	const setOptions = (optionsObject, reloadText = false) => {
+		console.log({ ...options, optionsObject })
+		if (reloadText) setText(optionsObject.text)
+		setOptionsState({ ...options, ...optionsObject })
+	}
+
+	const [ hasFocus, setHasFocus ] = useState(false)
+
 	const checkInput = (key) => {
 		const nextChar = textObject.currentSentence[textObject.currentCharIndex + 1]
 
@@ -60,22 +92,38 @@ const Typery = ({ config }) => {
 		}
 	}
 
-	const setText = (text) => setTextObject({ text, ...defaultTextObject })
+	const handleKeyDown = (event) => {
+		if (keysDown[key]) return
+		const { key } = event
+		if (key === 'esc' || event.ctrlKey) console.log('esc')
+		else event.preventDefault()
 
-	const setOptions = (optionsObject, reloadText = false) => {
-		console.log({ ...options, optionsObject })
-		if (reloadText) setText(optionsObject.text)
-		setOptionsState({ ...options, ...optionsObject })
+		setKeysDown({ ...keysDown, [key]: true })
+		checkInput(key)
+	}
+
+	const handleKeyUp = (event) => {
+		const { key } = event
+		setKeysDown({ ...keysDown, [key]: false })
 	}
 
 	return (
-		<div>
+		<TyperyContainer hasFocus={hasFocus}>
+			<textarea
+				autoFocus
+				readOnly
+				rows={1}
+				id="focus-area"
+				onFocus={() => setHasFocus(true)}
+				onBlur={() => setHasFocus(false)}
+				onKeyDown={(event) => (hasFocus ? handleKeyDown(event) : '')}
+				onKeyUp={handleKeyUp}
+				value={hasFocus ? '' : 'Click here to type.'}
+			/>
 			<TextDisplay currentSentence={textObject.currentSentence} currentCharIndex={textObject.currentCharIndex} />
 			<Keyboard keysDown={keysDown} currentChar={textObject.currentChar} options={options} />
 			<OptionsPanel config={config} options={options} setOptions={setOptions} />
-
-			<HandleKeyEvents keysDown={keysDown} setKeysDown={setKeysDown} checkInput={checkInput} />
-		</div>
+		</TyperyContainer>
 	)
 }
 
