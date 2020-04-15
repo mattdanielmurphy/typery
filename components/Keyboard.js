@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { grey, textColor, green, backgroundColor, borderRadius } from './theme'
 
 const keysQwerty = [
-	'~ 1! 2@ 3# 4$ 5% 6^ 7& 8* 9( 0) -_ =+ BackSpace',
+	'~` 1! 2@ 3# 4$ 5% 6^ 7& 8* 9( 0) -_ =+ BackSpace',
 	'Tab q w e r t y u i o p [{ ]} \\|',
 	'CapsLock a s d f g h j k l ;: \'" Enter',
 	'ShiftLeft z x c v b n m ,< .> /? ShiftRight',
