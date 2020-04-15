@@ -38,17 +38,13 @@ const TyperyContainer = styled.div`
 		left: 5%;
 		background: ${modalBackgroundColor};
 		border-radius: ${borderRadius};
+		cursor: pointer;
 		color: ${green};
 		font-size: 4em;
 		font-weight: 700;
 		text-align: center;
 		padding: 4em 0;
-		${({ hasFocus }) =>
-			hasFocus &&
-			`
-opacity: 0;
-cursor: default;
-`};
+		${({ hasFocus }) => hasFocus && `opacity: 0; cursor: default;`};
 	}
 `
 
