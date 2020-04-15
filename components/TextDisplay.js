@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { green } from './theme'
 
 const TextDisplay = ({ currentSentence, currentCharIndex }) => {
 	const characters = currentSentence ? currentSentence.split('') : []
@@ -19,13 +20,13 @@ const TextDisplay = ({ currentSentence, currentCharIndex }) => {
 
 const Text = styled.div`
 	max-width: 800px;
-	margin: 0 auto;
-	font-size: 2em;
+	margin: 1em auto;
+	font-size: 1.8em;
 	font-family: 'Lucida Console', Monaco, monospace;
 `
 
-const CurrentLetter = styled.span`color: #35fc4f;`
+const CurrentLetter = styled.span`color: ${green};`
 
-const CurrentSpace = styled.span`border-bottom: 2px solid #35fc4f;`
+const CurrentSpace = styled.span`border-bottom: 2px solid ${green};`
 
 export default TextDisplay

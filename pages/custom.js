@@ -1,5 +1,5 @@
 import React from 'react'
-import App from '../components/App'
+import Typer from '../components/Typer'
 import AppContainer from '../containers/AppContainer'
 import PageContainer from '../containers/PageContainer'
 
@@ -8,7 +8,7 @@ const config = { mode: 'custom' }
 const Custom = (props) => (
 	<PageContainer title="Custom Text Mode">
 		<AppContainer>
-			<App config={config} />
+			<Typer config={config} />
 		</AppContainer>
 	</PageContainer>
 )

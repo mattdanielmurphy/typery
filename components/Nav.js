@@ -5,9 +5,9 @@ import { useTheme } from '../components/ThemeContext'
 import ToggleNightModeButton from '../components/ToggleNightModeButton'
 
 const links = [
-	{ href: 'multiplayer', label: 'Multiplayer Mode' },
-	{ href: 'auto', label: 'Auto-Generated Text Mode' },
-	{ href: 'custom', label: 'Custom Text Mode' }
+	// { href: 'multiplayer', label: 'Multiplayer Mode' },
+	// { href: 'auto', label: 'Auto-Generated Text Mode' },
+	// { href: 'custom', label: 'Custom Text Mode' }
 ].map((link) => ({
 	...link,
 	key: `nav-link-${link.href}-${link.label}`

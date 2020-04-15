@@ -1,70 +1,39 @@
 import React from 'react'
+import words from './words'
+const frequencies = Object.keys(words).sort((a, b) => b - a)
 
-const vowels = [ 'a', 'e', 'i', 'o', 'u' ]
-const consts = [
-	'b',
-	'c',
-	'd',
-	'f',
-	'g',
-	'h',
-	'j',
-	'k',
-	'l',
-	'm',
-	'n',
-	'p',
-	'qu',
-	'r',
-	's',
-	't',
-	'v',
-	'w',
-	'x',
-	'y',
-	'z',
-	'tt',
-	'ch',
-	'sh'
-]
+const generateText = ({ focusLetter, minLength, maxLength }) => {
+	const largestN = 22038615
+	const modifier = () => 1 / (Math.random() * 500)
+	const getN = () => Math.floor(Math.random() * largestN * modifier())
+	const wordsToGenerate = 5
 
-const generateWord = (length, focusLetter) => {
-	let word = ''
-
-	let is_vowel = false
-
-	let array = []
-
-	for (let i = 0; i < length; i++) {
-		if (is_vowel) array = vowels
-		else array = consts
-		is_vowel = !is_vowel
-
-		word += array[Math.round(Math.random() * (array.length - 1))]
+	const testAgainstConditions = (word, sentence) => {
+		let failed = false
+		const test = (cond) => (cond ? '' : (failed = true))
+		test(!sentence.includes(word))
+		if (focusLetter) test(word.includes(focusLetter))
+		if (minLength) test(word.length >= minLength)
+		if (maxLength) test(word.length <= maxLength)
+		return !failed
 	}
-	if (focusLetter) {
-		if (word.includes(focusLetter)) return word
-		else return generateWord(length, focusLetter)
-	} else return word
-}
 
-const generateText = ({ focusLetter }) => {
-	console.log('gen text', focusLetter)
+	const sentence = []
+	for (let i = 0; i < wordsToGenerate; i++) {
+		const index = getN()
 
-	const sentences = 10
-	const words = 5
-	const wordLength = () => Math.floor(3 * Math.random()) + 3
-	const text = []
-	for (let s = 0; s < sentences; s++) {
-		let sentence = ''
-		for (let w = 0; w < words; w++) {
-			const word = generateWord(wordLength(), focusLetter)
-
-			sentence += `${word} `
+		for (let j = 0; j < frequencies.length; j++) {
+			const freq = frequencies[j]
+			if (freq <= index) {
+				const word = words[freq].toLowerCase()
+				if (testAgainstConditions(word, sentence)) {
+					sentence.push(word)
+					break
+				}
+			}
 		}
-		text.push(sentence.trim())
 	}
-	return text
+	return [ sentence.join(' ') ]
 }
 
 export default generateText

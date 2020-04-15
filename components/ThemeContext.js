@@ -9,9 +9,7 @@ const defaultMode = 'light'
 export const useTheme = () => React.useContext(ThemeToggleContext)
 
 export const MyThemeProvider = ({ children }) => {
-	const [ themeState, setThemeState ] = React.useState({
-		mode: 'dark'
-	})
+	const [ themeState, setThemeState ] = React.useState({ mode: defaultMode })
 
 	const setTheme = (mode = defaultMode) => {
 		// set cookie
@@ -41,6 +39,7 @@ const Wrapper = styled.div`
 	color: ${textColor};
 	position: absolute;
 	min-height: 100%;
+	box-sizing: border-box;
 	left: 0;
 	right: 0;
 	top: 0;
@@ -48,3 +47,7 @@ const Wrapper = styled.div`
 `
 
 export default ThemeProvider
+
+// Explanation:
+// https://medium.com/@rossbulat/react-dark-mode-with-styled-theming-and-context-57557de6400
+// https://github.com/rossbulat/react-theming-dark-mode/tree/master/src
