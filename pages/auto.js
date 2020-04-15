@@ -6,7 +6,7 @@ import PageContainer from '../containers/PageContainer'
 const config = { mode: 'auto' }
 
 const Auto = (props) => (
-	<PageContainer title="Auto-Generated Text Mode">
+	<PageContainer title="Typer | Auto Mode">
 		<AppContainer>
 			<Typer config={config} />
 		</AppContainer>
