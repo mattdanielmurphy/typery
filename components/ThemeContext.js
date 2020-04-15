@@ -9,9 +9,7 @@ const defaultMode = 'light'
 export const useTheme = () => React.useContext(ThemeToggleContext)
 
 export const MyThemeProvider = ({ children }) => {
-	const [ themeState, setThemeState ] = React.useState({
-		mode: 'dark'
-	})
+	const [ themeState, setThemeState ] = React.useState({ mode: defaultMode })
 
 	const setTheme = (mode = defaultMode) => {
 		// set cookie

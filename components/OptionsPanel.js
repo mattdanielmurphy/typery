@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import formatInputtedText from './logic/formatInputtedText'
-import { green } from './theme'
+import { green, grey, borderRadius } from './theme'
 import styled from 'styled-components'
 
 const Checkbox = styled((props) => <input type="checkbox" {...props} />)`
@@ -9,17 +9,16 @@ const Checkbox = styled((props) => <input type="checkbox" {...props} />)`
 		margin-right: 1em;
     border-radius: 4px;
 		transition: ease 0.3s;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.2);
     cursor: pointer;
     appearance: none;
 		height: 2em;
     width: 2em;
 		&:checked {
-			${'' /* background-color: ${green}; */}
+			background-color: rgba(0, 0, 0, 0.5)
 		}
 		&:checked::before {
 			content: '\\2714';
-			${'' /* content: '\\2716'; */}
 			display: block;
 			font-size: 1em;
 			color: #eee;
@@ -29,7 +28,10 @@ const Checkbox = styled((props) => <input type="checkbox" {...props} />)`
 		}
 `
 
-const Label = styled.label`cursor: pointer;`
+const Label = styled.label`
+	cursor: pointer;
+	font-family: 'Inter', sans-serif;
+`
 
 const OptionContainer = styled.div`margin: 1em;`
 
@@ -56,8 +58,8 @@ const OptionsContainer = styled.div`
 	margin: 0 auto;
 	max-width: 800px;
 	justify-content: center;
-	border-radius: .5em;
-	background: rgba(255, 255, 255, 0.1);
+	border-radius: ${borderRadius};
+	background: ${grey};
 	padding: 3em;
 	padding-left: 4em;
 	h1 {

@@ -16,47 +16,17 @@ $keyboard-spacing: 1em;
 	display: flex;
 	justify-content: center;
 }
-.keyboard {
-	color: $color-text;
-	display: grid;
-	font-size: 1em;
-	font-family: 'Inter', sans-serif;
-	grid-template-columns: repeat(58,  ($key-size + $key-gutter) / 4);
-	grid-template-rows: repeat(10,  ($key-size + $key-gutter) / 2);
-	justify-content: center;
-	letter-spacing: 1px;
-	line-height: 24px;
-	padding: $keyboard-spacing;
-	transform-origin: top left;
-	background: rgba(0, 0, 0, 0.5);
-}
 .key {
 	&.error {
 		background: rgba(255, 0, 0, 0.5);
 		color: white;
 	}
-	&.key-down {
-		background: #222;
-	}
 	&.key-current {
 		background: #35fc4f;
 		color: black;
 	}
-	align-items: center;
-	color: #eee;
 	// background-color: rgba(255, 255, 255, 0.02);
-	// border: 1px solid #444;
-	border-radius: $key-radius;
-	cursor: default;
-	display: flex;
-	flex-direction: column;
-	grid-column-end: span 4;
-	grid-row-end: span 2;
-	grid-template-columns: repeat(2, $key-size / 2);
-	grid-template-rows: repeat(2, $key-size / 2);
-	justify-content: center;
-	padding: $key-spacing-vertical $key-spacing-horizontal;
-	margin: $key-gutter / 2;
+	// border: 1px solid #444	;
 	&.is-arrow-down,
 	&.is-arrow-up {
 		grid-column-start: 51;

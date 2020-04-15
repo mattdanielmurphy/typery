@@ -9,6 +9,11 @@ export const textColor = theme('mode', {
 	dark: '#fff'
 })
 export const green = theme('mode', {
-	light: '#31BE48',
+	light: '#37b948',
 	dark: '#35fc4f'
 })
+export const grey = theme('mode', {
+	light: 'rgba(0,0,0,0.04)',
+	dark: 'rgba(0,0,0,0.1)'
+})
+export const borderRadius = '0.4em'

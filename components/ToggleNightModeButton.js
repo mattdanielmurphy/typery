@@ -6,7 +6,12 @@ import { textColor, green } from '../components/theme'
 
 const ToggleNightModeButton = (props) => {
 	return (
-		<Button onClick={() => props.themeToggle.toggle()}>
+		<Button
+			onClick={(e) => {
+				e.target.blur()
+				props.themeToggle.toggle()
+			}}
+		>
 			<FontAwesomeIcon icon={props.theme.mode === 'dark' ? faSun : faMoon} />
 		</Button>
 	)

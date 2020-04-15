@@ -24,7 +24,7 @@ const defaultTextObject = {
 }
 
 const defaultOptions = {
-	highlightNextKey: { _default: true, type: 'Boolean', value: true },
+	highlightNextKey: { _default: false, type: 'Boolean', value: false },
 	skipSpace: { _default: true, type: 'Boolean', value: true },
 	text: { _default: text, type: 'Array', value: text, scope: 'custom' }
 }
