@@ -6,7 +6,7 @@ import { Row, Card } from '../components/styled/layout'
 import { Title, Description } from '../components/styled/Title'
 
 const Custom = (props) => (
-	<PageContainer title="Typer | Custom Text Mode: Coming Soon!">
+	<PageContainer title="Typery | Custom Text Mode: Coming Soon!">
 		<Title>Custom Text Mode</Title>
 		<Description>Coming soon. I promise.</Description>
 		<Row>

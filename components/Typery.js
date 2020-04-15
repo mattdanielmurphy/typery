@@ -28,7 +28,7 @@ const defaultOptions = {
 	text: { type: 'Array', value: text, scope: 'custom' } // scope is mode that this option will appear in
 }
 
-const Typer = ({ config }) => {
+const Typery = ({ config }) => {
 	const [ textObject, setTextObjectState ] = useState(defaultTextObject)
 	const [ keysDown, setKeysDown ] = useState({})
 
@@ -79,4 +79,4 @@ const Typer = ({ config }) => {
 	)
 }
 
-export { Typer as default }
+export { Typery as default }

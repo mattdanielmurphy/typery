@@ -8,8 +8,8 @@ import { Card, Row } from '../components/styled/layout'
 import { Title, Description } from '../components/styled/Title'
 
 const Custom = (props) => (
-	<PageContainer title="Typer | Home">
-		<Title>Welcome to Typer</Title>
+	<PageContainer title="Typery | Home">
+		<Title>Welcome to Typery</Title>
 		<Description>
 			Improving your typing efficiently the way <em>you</em> want.
 		</Description>
