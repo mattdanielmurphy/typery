@@ -13,7 +13,7 @@ export const green = theme('mode', {
 	dark: '#35fc4f'
 })
 export const grey = theme('mode', {
-	light: 'rgba(0,0,0,0.04)',
-	dark: 'rgba(0,0,0,0.1)'
+	light: 'rgba(0,0,0,0.05)',
+	dark: 'rgba(0,0,0,0.12)'
 })
 export const borderRadius = '0.4em'
