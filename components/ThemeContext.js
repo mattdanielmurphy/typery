@@ -41,6 +41,7 @@ const Wrapper = styled.div`
 	color: ${textColor};
 	position: absolute;
 	min-height: 100%;
+	box-sizing: border-box;
 	left: 0;
 	right: 0;
 	top: 0;

@@ -9,7 +9,7 @@ const keysQwerty = `${'`~ 1! 2@ 3# 4$ 5% 6^ 7& 8* 9( 0) -_ =+ BackSpace ' +
 const keys = keysQwerty
 
 const makeKey = (keys, options = {}) => {
-	const { isDouble, isSpecial, isDown, isCurrent } = options
+	const { isDouble, isSpecial, isDown, isCurrent, highlightCurrentKey } = options
 	let topKey = keys
 	let bottomKey
 	let className = 'key'
@@ -30,7 +30,7 @@ const makeKey = (keys, options = {}) => {
 	}
 
 	if (isDown) className += ' key-down'
-	if (isCurrent) className += ' key-current'
+	if (isCurrent && highlightCurrentKey) className += ' key-current'
 
 	return (
 		<div key={className + topKey} data-key={topKey} data-alt-key={bottomKey} className={className}>
@@ -40,18 +40,19 @@ const makeKey = (keys, options = {}) => {
 	)
 }
 
-const getKey = (key, keysDown, currentChar) => {
+const getKey = (key, keysDown, currentChar, highlightCurrentKey) => {
 	const isSpecial = key.length > 2
 	const isDouble = key.length > 1 && !isSpecial
 	const isDown = isDouble ? keysDown[key[1]] || keysDown[key[0]] : keysDown[key]
 	const isCurrent = key === 'Space' ? ' ' === currentChar : key === currentChar
-	return makeKey(key, { isSpecial, isDouble, isDown, isCurrent })
+	return makeKey(key, { isSpecial, isDouble, isDown, isCurrent, highlightCurrentKey })
 }
 
-const Keyboard = ({ keysDown, currentChar }) => {
+const Keyboard = ({ keysDown, currentChar, options }) => {
+	const highlightCurrentKey = options.highlightNextKey.value
 	return (
 		<div className="keyboard-container">
-			<div className="keyboard">{keys.map((key) => getKey(key, keysDown, currentChar))}</div>
+			<div className="keyboard">{keys.map((key) => getKey(key, keysDown, currentChar, highlightCurrentKey))}</div>
 		</div>
 	)
 }

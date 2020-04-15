@@ -6,6 +6,7 @@ import Keyboard from './Keyboard'
 import generateText from './logic/generateText'
 import formatInputtedText from './logic/formatInputtedText'
 import advanceCursor from './logic/advanceCursor'
+import styled from 'styled-components'
 import '../styles/sass/keyboard.scss'
 
 const focusLetter = ''
@@ -23,9 +24,9 @@ const defaultTextObject = {
 }
 
 const defaultOptions = {
-	highlightNextKey: { _default: true, type: Boolean, value: true },
-	skipSpace: { _default: true, type: Boolean, value: true },
-	text: { _default: text, type: Array, value: text }
+	highlightNextKey: { _default: true, type: 'Boolean', value: true },
+	skipSpace: { _default: true, type: 'Boolean', value: true },
+	text: { _default: text, type: 'Array', value: text, scope: 'custom' }
 }
 
 const Typer = ({ config }) => {
@@ -52,7 +53,8 @@ const Typer = ({ config }) => {
 
 		if (key === 'space') key = ' '
 		if (key === textObject.currentChar) {
-			if (options.skipSpace && nextChar === ' ') {
+			if (options.skipSpace.value === true && nextChar === ' ') {
+				console.log('skip space', options)
 				advanceCursor(textObject, setTextObject, { advanceTwice: true })
 			} else {
 				advanceCursor(textObject, setTextObject)
@@ -63,14 +65,15 @@ const Typer = ({ config }) => {
 	const setText = (text) => setTextObject({ text, ...defaultTextObject })
 
 	const setOptions = (optionsObject, reloadText = false) => {
+		console.log({ ...options, optionsObject })
 		if (reloadText) setText(optionsObject.text)
-		setOptionsState(optionsObject)
+		setOptionsState({ ...options, ...optionsObject })
 	}
 
 	return (
 		<div>
 			<TextDisplay currentSentence={textObject.currentSentence} currentCharIndex={textObject.currentCharIndex} />
-			<Keyboard keysDown={keysDown} currentChar={textObject.currentChar} />
+			<Keyboard keysDown={keysDown} currentChar={textObject.currentChar} options={options} />
 			<OptionsPanel config={config} options={options} setOptions={setOptions} />
 
 			<HandleKeyEvents keysDown={keysDown} setKeysDown={setKeysDown} checkInput={checkInput} />

@@ -1,48 +1,96 @@
 import React, { useState } from 'react'
 import formatInputtedText from './logic/formatInputtedText'
+import { green } from './theme'
 import styled from 'styled-components'
 
-const handleChange = (e) => {}
+const Checkbox = styled((props) => <input type="checkbox" {...props} />)`
+		vertical-align: middle;
+		margin-top: 0;
+		margin-right: 1em;
+    border-radius: 4px;
+		transition: ease 0.3s;
+    background-color: rgba(0,0,0,0.5);
+    cursor: pointer;
+    appearance: none;
+		height: 2em;
+    width: 2em;
+		&:checked {
+			${'' /* background-color: ${green}; */}
+		}
+		&:checked::before {
+			content: '\\2714';
+			${'' /* content: '\\2716'; */}
+			display: block;
+			font-size: 1em;
+			color: #eee;
+			position: relative;
+			left: 0.6em;
+			top: .25em;
+		}
+`
 
-String.prototype.toCamelCase = function() {
-	return this.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-		return index === 0 ? word.toLowerCase() : word.toUpperCase()
-	}).replace(/\s+/g, '')
-}
+const Label = styled.label`cursor: pointer;`
 
-const UnstyledBoolean = ({ name }) => {
-	const camelName = name.toCamelCase()
-	const handleChange = (e) => {
-		console.log(e)
+const OptionContainer = styled.div`margin: 1em;`
+
+const BooleanOption = ({ name, camelName, value, setOptions }) => {
+	const [ checked, setChecked ] = useState(value)
+	const toggle = (e) => {
+		setChecked(!checked)
+		setOptions({ [camelName]: { _default: !checked, type: 'Boolean', value: !checked } })
+		e.target.blur()
 	}
 	return (
-		<div>
-			<label>{name}</label>
-			<input type="checkbox" name={name} id={camelName} onChange={handleChange} />
-		</div>
+		<OptionContainer className="option">
+			<Checkbox name={camelName} id={camelName} onChange={toggle} checked={checked} />
+			<Label htmlFor={camelName}>{name}</Label>
+		</OptionContainer>
 	)
 }
 
-const Boolean = styled(UnstyledBoolean)`#options{font-family: 'Inter';text-align:left;}`
+const Option = (props) => {
+	return <div>{props.type === 'Boolean' && <BooleanOption {...props}>hey</BooleanOption>}</div>
+}
 
-const HighlightCurrentColor = () => <Boolean name="Highlight current color" />
-const OptionsPanel = ({ options, setOptions, config }) => {
-	const handleClick = (e) => {
-		const inputtedText = document.getElementById('custom-text-input').value
-		const text = formatInputtedText(inputtedText, 40)
-		console.table({ text })
-		setOptions({ text, ...options }, true)
+const OptionsContainer = styled.div`
+	margin: 0 auto;
+	max-width: 800px;
+	justify-content: center;
+	border-radius: .5em;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 3em;
+	padding-left: 4em;
+	h1 {
+		margin: 0 0 .7em -.5em;
 	}
+`
+
+const OptionsPanel = ({ options, setOptions, config }) => {
+	const optionsArray = Object.entries(options)
 	return (
-		<div id="options">
+		<OptionsContainer>
 			<h1>Options</h1>
-			<HighlightCurrentColor />
-			{config.mode === 'custom' && (
-				<textarea name="textInput" id="custom-text-input" cols="50" rows="10" onChange={handleChange} />
-			)}
-			<button onClick={handleClick}>Submit</button>
-		</div>
+
+			{optionsArray.map(([ key, props ], index) => {
+				const name = key.fromCamelCase()
+				return <Option key={index} name={name} camelName={key} {...props} setOptions={setOptions} />
+			})}
+		</OptionsContainer>
 	)
 }
 
 export default OptionsPanel
+
+{
+	/* {config.mode === 'custom' && (
+	<textarea name="textInput" id="custom-text-input" cols="50" rows="10" onChange={handleChange} />
+)}
+<button onClick={handleClick}>Submit</button> */
+}
+
+// const handleClick = (e) => {
+// 	const inputtedText = document.getElementById('custom-text-input').value
+// 	const text = formatInputtedText(inputtedText, 40)
+// 	console.table({ text })
+// 	setOptions({ text }, true)
+// }
