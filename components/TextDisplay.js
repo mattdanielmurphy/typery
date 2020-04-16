@@ -7,10 +7,9 @@ const CurrentSpace = styled.span`border-bottom: 2px solid ${green};`
 
 const Text = styled.div`
 	max-width: 800px;
-	padding: 1em;
+	padding-top: 1em;
 	margin: 0 auto;
-	font-size: 1.8em;
-	font-family: 'Lucida Console', Monaco, monospace;
+	font-size: 2.3em;
 `
 
 const TextDisplay = ({ currentSentence, currentCharIndex }) => {

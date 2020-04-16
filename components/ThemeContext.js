@@ -43,7 +43,8 @@ const Wrapper = styled.div`
 	left: 0;
 	right: 0;
 	top: 0;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Baloo Bhaina 2';
+	font-size: 1.1em;
 `
 
 export default ThemeProvider

@@ -28,10 +28,7 @@ const Checkbox = styled((props) => <input type="checkbox" {...props} />)`
 		}
 `
 
-const Label = styled.label`
-	cursor: pointer;
-	font-family: 'Inter', sans-serif;
-`
+const Label = styled.label`cursor: pointer;`
 
 const OptionContainer = styled.div`margin: 1em;`
 

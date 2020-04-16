@@ -24,9 +24,10 @@ const KeyWrapper = styled.div`
 	grid-template-columns: repeat(2, ${`${keySize / 2}px`});
 	grid-template-rows: repeat(2, ${`${keySize / 2}px`});
 	justify-content: center;
-	padding: 0.7em 1.4em 0.8em 1.4em;
-	margin: .1em;
-	font-weight: 700;
+	padding: 1.4em 1.4em 1.4em 1.4em;
+	margin: 0em;
+	font-weight: 600;
+	line-height: 1;
 	color: ${({ isDown, isCurrent, highlightCurrentKey }) => {
 		if (isCurrent && highlightCurrentKey) {
 			return backgroundColor
@@ -53,7 +54,7 @@ const makeKey = (key, index, options = {}) => {
 	}
 
 	const specialKeys = {
-		BackSpace: <span>&larr;</span>,
+		BackSpace: <span style={{ fontFamily: 'Helvetica', fontSize: '1.6em', marginTop: '-1.2em' }}>&larr;</span>,
 		Enter: <span style={{ fontFamily: 'Helvetica' }}>&#8629;</span>,
 		ShiftLeft: 'Shift',
 		ShiftRight: 'Shift',
@@ -83,7 +84,7 @@ const getKey = (key, index, keysDown, currentChar, highlightCurrentKey) => {
 const KeyboardContainer = styled.div`
 	display: flex;
 	.keyboard {
-		padding: 1.5em;
+		padding: 1em;
 		background: ${grey};
 		color: ${textColor};
 		border-radius: ${borderRadius};

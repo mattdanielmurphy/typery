@@ -7,6 +7,7 @@ import formatInputtedText from './logic/formatInputtedText'
 import advanceCursor from './logic/advanceCursor'
 import styled from 'styled-components'
 import { green, borderRadius, modalBackgroundColor } from './theme'
+import { transparentize } from 'polished'
 
 const focusLetter = ''
 const minLength = 3
@@ -40,10 +41,11 @@ const TyperyContainer = styled.div`
 		border-radius: ${borderRadius};
 		cursor: pointer;
 		color: ${green};
+		font-family: 'Baloo Bhaina 2', sans-serif;
 		font-size: 4em;
 		font-weight: 700;
 		text-align: center;
-		padding: 4em 0;
+		padding: 3.5em 0;
 		${({ hasFocus }) => hasFocus && `opacity: 0; cursor: default;`};
 	}
 `
@@ -89,6 +91,8 @@ const Typery = ({ config }) => {
 	}
 
 	const handleKeyDown = (event) => {
+		console.log(event)
+		event.target.style.cursor = 'none'
 		if (keysDown[key]) return
 		const { key } = event
 		if (key === 'esc' || event.ctrlKey) console.log('esc')
@@ -103,6 +107,8 @@ const Typery = ({ config }) => {
 		setKeysDown({ ...keysDown, [key]: false })
 	}
 
+	const [ pointerMoveTimeout, setPointerMoveTimeout ] = useState(true)
+
 	return (
 		<TyperyContainer hasFocus={hasFocus}>
 			<textarea
@@ -111,10 +117,23 @@ const Typery = ({ config }) => {
 				rows={1}
 				id="focus-area"
 				onFocus={() => setHasFocus(true)}
-				onBlur={() => setHasFocus(false)}
+				onBlur={() => {
+					setHasFocus(false)
+				}}
 				onKeyDown={(event) => (hasFocus ? handleKeyDown(event) : '')}
 				onKeyUp={handleKeyUp}
-				value={hasFocus ? '' : 'Click here to type.'}
+				onMouseEnter={(e) => {
+					if (hasFocus) return
+					e.target.style.cursor = 'none'
+					e.target.focus()
+					setPointerMoveTimeout(e.target)
+					setTimeout(() => setPointerMoveTimeout(), 200)
+				}}
+				onPointerMove={(e) => {
+					if (pointerMoveTimeout) return
+					else if (e.target.style.cursor) e.target.style.cursor = 'default'
+				}}
+				value={hasFocus ? '' : 'Hover over this box to type.'}
 			/>
 			<TextDisplay currentSentence={textObject.currentSentence} currentCharIndex={textObject.currentCharIndex} />
 			<Keyboard keysDown={keysDown} currentChar={textObject.currentChar} options={options} />
