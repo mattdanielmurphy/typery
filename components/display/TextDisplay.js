@@ -1,6 +1,6 @@
 import React, { Fragment as F } from 'react'
 import styled from 'styled-components'
-import { green, textColor, currentKeyColor } from './utils/theme'
+import { green, textColor, currentKeyColor } from '../theme'
 
 const StyledLetter = styled.span`color: ${(p) => currentKeyColor(p)};`
 

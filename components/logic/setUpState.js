@@ -17,7 +17,6 @@ const defaultOptions = {
 }
 
 const setUpState = (useAppState) => {
-	console.log('running set up state')
 	const [ options, setOptionsState ] = useAppState(defaultOptions)
 	const [ textObject, setTextObject ] = useAppState(defaultTextObject)
 	const [ keysDown, setKeysDown ] = useAppState({})

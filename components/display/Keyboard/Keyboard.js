@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components'
-import { grey, textColor, green, backgroundColor, borderRadius, keyDownBackgroundColor } from '../../utils/theme'
+import { grey, textColor, green, backgroundColor, borderRadius, keyDownBackgroundColor } from '../../theme'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLevelDownAlt } from '@fortawesome/free-solid-svg-icons'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Typery from '../components/Typery'
+import { Typery } from '../components'
 import AppContainer from '../containers/AppContainer'
 import PageContainer from '../containers/PageContainer'
 

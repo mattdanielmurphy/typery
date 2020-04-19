@@ -2,7 +2,6 @@ import React from 'react'
 import checkInput from './checkInput'
 
 function watchKeys({ keysDown, setKeysDown, setKeysUp, keysUp, textObject, setTextObject }, useEffect) {
-	console.log('watch keys')
 	const setKeyDown = (key) => {
 		checkInput(key, textObject, setTextObject)
 		setKeysDown({ [key]: true, ...keysDown })
@@ -34,7 +33,6 @@ function watchKeys({ keysDown, setKeysDown, setKeysUp, keysUp, textObject, setTe
 
 	useEffect(
 		() => {
-			console.log('add event listeners')
 			addEventListeners()
 			return removeEventListeners
 		},

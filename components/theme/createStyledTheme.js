@@ -7,7 +7,6 @@ const createStyledTheme = (theme) => {
 			const [ light, dark ] = value
 			styledTheme[property] = makeStyledTheme('mode', { light, dark })
 		} else {
-			console.log(property, value)
 			styledTheme[property] = value
 		}
 	})

@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import styled, { withTheme } from 'styled-components'
-import { useTheme } from '../components/utils/theme'
-import ToggleNightModeButton from '../components/ToggleNightModeButton'
+import { useTheme } from '../theme'
+import { ToggleNightModeButton } from '.'
 
 const links = [
 	// { href: 'multiplayer', label: 'Multiplayer Mode' },
