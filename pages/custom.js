@@ -2,8 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import PageContainer from '../containers/PageContainer'
 
-import { Row, Card } from '../components/styled/layout'
-import { Title, Description } from '../components/styled/Title'
+import { Row, Card, Title, Description } from '../components'
 
 const Custom = (props) => (
 	<PageContainer title="Typery | Custom Text Mode: Coming Soon!">

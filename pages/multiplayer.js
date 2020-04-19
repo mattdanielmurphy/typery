@@ -1,10 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import PageContainer from '../containers/PageContainer'
-import Typery from '../components/Typery'
-
-import { Row, Card } from '../components/styled/layout'
-import { Title, Description } from '../components/styled/Title'
+import { Typery, Row, Card, Title, Description } from '../components'
 
 const Custom = (props) => (
 	<PageContainer title="Typery | Multiplayer: Coming Soon!">

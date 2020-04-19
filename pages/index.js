@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import { textColor, grey } from '../components/theme'
 import PageContainer from '../containers/PageContainer'
 
-import { Card, Row } from '../components/styled/layout'
-import { Title, Description } from '../components/styled/Title'
+import { Card, Row, Title, Description } from '../components'
 
 const Custom = (props) => (
 	<PageContainer title="Typery | Home">
@@ -24,7 +23,7 @@ const Custom = (props) => (
 
 			<Link href="auto">
 				<Card>
-					<h3>Auto-Generated Text Mode</h3>
+					<h3>Auto Mode</h3>
 					<p>Learn to type by typing word fragments automatically generated based on your weakest letter.</p>
 				</Card>
 			</Link>

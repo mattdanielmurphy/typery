@@ -41,7 +41,8 @@ const Typery = ({ config, theme }) => {
 	const [ keysDown, setKeysDown ] = useState({})
 	const [ options, setOptionsState ] = useState(defaultOptions(textObject.text))
 	const setOptions = (optionsObject, reloadText = false) => {
-		if (optionsObject.darkMode !== options.darkMode) toggleDarkMode()
+		console.log(optionsObject, options)
+		if (optionsObject.darkMode !== undefined && optionsObject.darkMode !== options.darkMode) toggleDarkMode()
 		if (reloadText) setText(optionsObject.text)
 		setOptionsState({ ...options, ...optionsObject })
 	}
