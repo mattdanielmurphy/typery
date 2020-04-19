@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import OptionsPanel from './OptionsPanel'
 import TextDisplay from './TextDisplay'
-import Keyboard from './Keyboard'
+import Keyboard from './display/Keyboard'
 import generateText from './logic/generateText'
 import formatInputtedText from './logic/formatInputtedText'
 import advanceCursor from './logic/advanceCursor'
 import styled from 'styled-components'
-import { green, borderRadius, modalBackgroundColor } from './theme'
-import { transparentize } from 'polished'
+import { green, modalBackgroundColor } from './utils/theme'
+const borderRadius = '.4rem'
 
 const focusLetter = ''
 const minLength = 3
 const maxLength = 8
-
 const text = generateText({ focusLetter, minLength, maxLength })
 
 const defaultTextObject = {
@@ -25,7 +24,7 @@ const defaultTextObject = {
 
 const defaultOptions = {
 	highlightNextKey: { type: 'Boolean', value: false },
-	skipSpace: { type: 'Boolean', value: true },
+	skipSpace: { type: 'Boolean', value: false },
 	text: { type: 'Array', value: text, scope: 'custom' } // scope is mode that this option will appear in
 }
 
@@ -109,6 +108,14 @@ const Typery = ({ config }) => {
 
 	const [ pointerMoveTimeout, setPointerMoveTimeout ] = useState(true)
 
+	// add and remove listener for window
+	useState(() => {
+		window.addEventListener('blur', (e) => console.log(e))
+		return () => {
+			window.removeEventListener('blur', (e) => console.log('remove', e))
+		}
+	}, [])
+
 	return (
 		<TyperyContainer hasFocus={hasFocus}>
 			<textarea
@@ -116,8 +123,11 @@ const Typery = ({ config }) => {
 				readOnly
 				rows={1}
 				id="focus-area"
-				onFocus={() => setHasFocus(true)}
+				onFocus={() => {
+					setHasFocus(true)
+				}}
 				onBlur={() => {
+					setKeysDown({})
 					setHasFocus(false)
 				}}
 				onKeyDown={(event) => (hasFocus ? handleKeyDown(event) : '')}

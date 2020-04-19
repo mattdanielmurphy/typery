@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { grey, textColor } from '../theme'
+import { grey, textColor } from '../utils/theme'
 
 export const Row = styled.div`
 	max-width: 740px;

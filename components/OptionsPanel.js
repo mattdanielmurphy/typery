@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import formatInputtedText from './logic/formatInputtedText'
-import { green, grey, borderRadius, textColor } from './theme'
+import { green, grey, borderRadius, textColor } from './utils/theme'
 import styled from 'styled-components'
 
 const Checkbox = styled((props) => <input type="checkbox" {...props} />)`

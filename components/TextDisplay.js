@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { Fragment as F } from 'react'
 import styled from 'styled-components'
-import { green } from './theme'
+import { green, textColor, currentKeyColor } from './utils/theme'
 
-const CurrentLetter = styled.span`color: ${green};`
-const CurrentSpace = styled.span`border-bottom: 2px solid ${green};`
+const StyledLetter = styled.span`color: ${(p) => currentKeyColor(p)};`
+
+const Space = styled(StyledLetter)`
+	border-bottom: 2px solid ${({ isCurrent }) => (isCurrent ? green : 'transparent')};
+	position: relative;
+	padding: 0 .1em;
+	top: -25px;
+`
 
 const Text = styled.div`
 	max-width: 800px;
 	padding-top: 1em;
 	margin: 0 auto;
 	font-size: 2.3em;
+	padding-bottom: 0;
+	span {
+		line-height: 0.6em;
+	}
 `
 
 const TextDisplay = ({ currentSentence, currentCharIndex }) => {
@@ -17,11 +27,10 @@ const TextDisplay = ({ currentSentence, currentCharIndex }) => {
 	return (
 		<div>
 			<Text>
-				{characters.map((char, index) => {
-					if (index === currentCharIndex) {
-						if (char === ' ') return <CurrentSpace key={index}> </CurrentSpace>
-						else return <CurrentLetter key={index}>{char}</CurrentLetter>
-					} else return <span key={index}>{char}</span>
+				{characters.map((charValue, index) => {
+					const char = { children: charValue, isCurrent: index === currentCharIndex }
+					const isSpace = charValue === ' '
+					return isSpace ? <Space key={index} {...char} /> : <StyledLetter key={index} {...char} />
 				})}
 			</Text>
 		</div>
