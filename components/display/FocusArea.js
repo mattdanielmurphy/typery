@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import advanceCursor from '../logic/advanceCursor'
+
 export const FocusArea = ({ hasFocus, setHasFocus, keysDown, setKeysDown, textObject, setTextObject, options }) => {
 	const [ pointerMoveTimeout, setPointerMoveTimeout ] = useState(true)
+
 	const checkInput = (key) => {
 		const nextChar = textObject.currentSentence[textObject.currentCharIndex + 1]
 		if (key === 'space') key = ' '
@@ -13,6 +15,7 @@ export const FocusArea = ({ hasFocus, setHasFocus, keysDown, setKeysDown, textOb
 			}
 		}
 	}
+
 	const handleKeyDown = (event) => {
 		event.target.style.cursor = 'none'
 		if (keysDown[key] || key === 'esc' || event.ctrlKey) return
@@ -25,6 +28,7 @@ export const FocusArea = ({ hasFocus, setHasFocus, keysDown, setKeysDown, textOb
 		const { key } = event
 		setKeysDown({ ...keysDown, [key]: false })
 	}
+
 	return (
 		<textarea
 			autoFocus
@@ -33,8 +37,12 @@ export const FocusArea = ({ hasFocus, setHasFocus, keysDown, setKeysDown, textOb
 			id="focus-area"
 			onFocus={() => setHasFocus(true)}
 			onBlur={() => {
-				setKeysDown({})
-				setHasFocus(false)
+				setTimeout(() => {
+					if (document.activeElement.id !== 'focus-area') {
+						setKeysDown({})
+						setHasFocus(false)
+					}
+				}, 300)
 			}}
 			onKeyDown={(event) => (hasFocus ? handleKeyDown(event) : '')}
 			onKeyUp={handleKeyUp}

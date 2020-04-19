@@ -3,6 +3,7 @@ import { TextDisplay, OptionsPanel, Keyboard, FocusArea } from '..'
 import generateText from '../../logic/generateText'
 import formatInputtedText from '../../logic/formatInputtedText'
 import { TyperyContainer } from './TyperyContainer'
+import { useTheme } from '../../theme'
 
 const focusLetter = ''
 const minLength = 3
@@ -18,11 +19,15 @@ const defaultTextObject = (text = generateText({ focusLetter, minLength, maxLeng
 
 const defaultOptions = (text) => ({
 	highlightNextKey: { type: 'Boolean', value: false },
-	skipSpace: { type: 'Boolean', value: false },
+	skipSpace: { type: 'Boolean', value: true },
+	darkMode: { type: 'Boolean', value: true },
 	text: { type: 'Array', value: text, scope: 'custom' } // scope is mode that this option will appear in
 })
 
-const Typery = ({ config }) => {
+const Typery = ({ config, theme }) => {
+	const themeToggle = useTheme()
+	const toggleDarkMode = () => themeToggle.toggle()
+
 	const [ textObject, setTextObjectState ] = useState(defaultTextObject())
 	const setTextObject = (object) => {
 		if (object) setTextObjectState(object)
@@ -36,6 +41,7 @@ const Typery = ({ config }) => {
 	const [ keysDown, setKeysDown ] = useState({})
 	const [ options, setOptionsState ] = useState(defaultOptions(textObject.text))
 	const setOptions = (optionsObject, reloadText = false) => {
+		if (optionsObject.darkMode !== options.darkMode) toggleDarkMode()
 		if (reloadText) setText(optionsObject.text)
 		setOptionsState({ ...options, ...optionsObject })
 	}

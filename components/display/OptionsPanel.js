@@ -1,48 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import formatInputtedText from '../logic/formatInputtedText'
-import { green, grey, borderRadius, textColor } from '../theme'
+import { green, grey, borderRadius, textColor, backgroundColor, transitionTime } from '../theme'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
 
-const Checkbox = styled((props) => <input type="checkbox" {...props} />)`
-		vertical-align: middle;
-		margin-top: 0;
-		margin-right: 1em;
-    border-radius: 4px;
-		transition: ease 0.3s;
-    background-color: rgba(0,0,0,0.2);
-    cursor: pointer;
-    appearance: none;
-		height: 2em;
-    width: 2em;
-		&:checked {
-			background-color: rgba(0, 0, 0, 0.5)
-		}
-		&:checked::before {
-			content: '\\2714';
-			display: block;
-			font-size: 1em;
-			color: #eee;
-			position: relative;
-			left: 0.6em;
-			top: .25em;
-		}
+const Checkbox = styled(FontAwesomeIcon)`
+	color: ${({ checked }) => (checked ? green : textColor)};
+	cursor: pointer;
+	position:relative;
+	top: .03em;
+	transition: color ${transitionTime};
 `
 
-const Label = styled.label`cursor: pointer;`
+const Label = styled.span`
+	transition: color ${transitionTime};
+	margin: 0 0.5em;
+`
 
-const OptionContainer = styled.div`margin: 1em;`
+const OptionContainer = styled.div`
+	display: inline-block;
+	cursor: pointer;
+	&:hover {
+		span {
+			color: ${green};
+		}
+	}
+	font-size: 1.2em;
+`
 
 const BooleanOption = ({ name, camelName, value, setOptions }) => {
 	const [ checked, setChecked ] = useState(value)
 	const toggle = (e) => {
 		setChecked(!checked)
-		setOptions({ [camelName]: { _default: !checked, type: 'Boolean', value: !checked } })
-		e.target.blur()
+		setOptions({ [camelName]: { type: 'Boolean', value: !checked } })
+		const focusArea = document.getElementById('focus-area')
+		focusArea.focus()
 	}
 	return (
-		<OptionContainer className="option">
-			<Checkbox name={camelName} id={camelName} onChange={toggle} checked={checked} />
+		<OptionContainer className="option" onClick={toggle}>
 			<Label htmlFor={camelName}>{name}</Label>
+			<Checkbox
+				name={camelName}
+				id={camelName}
+				checked={checked}
+				onClick={toggle}
+				icon={checked ? faToggleOn : faToggleOff}
+			/>
 		</OptionContainer>
 	)
 }
