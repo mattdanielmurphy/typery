@@ -35,7 +35,7 @@ const BooleanOption = ({ name, camelName, value, setOptions }) => {
 		setChecked(!checked)
 		setOptions({ [camelName]: { type: 'Boolean', value: !checked } })
 		const focusArea = document.getElementById('focus-area')
-		focusArea.focus()
+		if (focusArea) focusArea.focus()
 	}
 	return (
 		<OptionContainer className="option" onClick={toggle}>

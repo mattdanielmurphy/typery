@@ -33,9 +33,8 @@ const Nav = (props) => {
 		</NavContainer>
 	)
 }
-const UnstyledNavContainer = (props) => <nav {...props} />
 
-const NavContainer = styled(UnstyledNavContainer)`
+const NavContainer = styled.nav`
 	text-align: center;
 	margin-bottom: 4em;
 	ul {

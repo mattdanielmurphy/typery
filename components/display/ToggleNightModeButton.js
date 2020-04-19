@@ -8,8 +8,11 @@ const ToggleNightModeButton = (props) => {
 	return (
 		<Button
 			onClick={(e) => {
+				console.log(e)
 				e.target.blur()
 				props.themeToggle.toggle()
+				const focusArea = document.getElementById('focus-area')
+				if (focusArea) focusArea.focus()
 			}}
 		>
 			<FontAwesomeIcon icon={props.theme.mode === 'dark' ? faSun : faMoon} />
