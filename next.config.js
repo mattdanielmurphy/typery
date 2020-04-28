@@ -1,9 +1,11 @@
 // const withSass = require('@zeit/next-sass')
 // const withCss = require('@zeit/next-css')
 const withFonts = require('next-fonts')
+const path = require('path')
 
 module.exports = withFonts({
-	webpack(config, options) {
+	webpack: (config) => {
+		config.resolve.alias['~'] = path.resolve(__dirname)
 		return config
 	}
 })

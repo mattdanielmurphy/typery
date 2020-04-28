@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
-import { textColor, green } from '../theme'
+import { textColor, green } from '~/common/theme'
 
 const ToggleNightModeButton = (props) => {
 	return (
 		<Button
+			{...props}
 			onClick={(e) => {
 				console.log(e)
 				e.target.blur()

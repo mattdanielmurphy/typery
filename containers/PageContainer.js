@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import Nav from '../components/display/Nav'
 import styled, { withTheme } from 'styled-components'
-import { MyThemeProvider, useTheme } from '../components/theme'
+import { MyThemeProvider, useTheme } from '~/common/theme'
+import { Nav } from '~/common/components'
 
 const PageContainer = (props) => {
 	return (
