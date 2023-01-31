@@ -18,9 +18,9 @@ const defaultTextObject = (text = generateText({ focusLetter, minLength, maxLeng
 })
 
 const defaultOptions = (text) => ({
-	highlightNextKey: { type: 'Boolean', value: false },
-	skipSpace: { type: 'Boolean', value: true },
-	darkMode: { type: 'Boolean', value: true },
+	highlightNextKey: { type: 'Boolean', value: true },
+	skipSpace: { type: 'Boolean', value: false },
+	darkMode: { type: 'Boolean', value: false },
 	text: { type: 'Array', value: text, scope: 'custom' } // scope is mode that this option will appear in
 })
 
