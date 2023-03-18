@@ -1,0 +1,68 @@
+.keyboard {
+	display: flex;
+	flex-direction: column;
+	gap: .4rem;
+	align-content: center;
+	margin: 1rem 0;
+	font-size: 1.15rem;
+}
+
+.keyboard .row {
+	/* justify-content: center; */
+	display: flex;
+	gap: .4rem;
+}
+
+/* ? Keys */
+.keyboard .row div {
+	border-radius: .3em;
+	padding: 0 .5rem;
+	--keyWidth: 3rem;
+	--tabWidth: calc(var(--keyWidth) * 1.31);
+	min-width: var(--keyWidth);
+	justify-content: center;
+	height: 2.8rem;
+	display: inline-flex;
+	align-items: center;
+	/* border: 1px solid #333; */
+	text-align: center;
+	background: #0d0d0d;
+	color: #444;
+	font-size: .8rem;
+}
+
+.keyboard .row div.standardKey {
+	/* ie single-width; eg " `123qwer " */
+	font-size: 1rem;
+	color: #aaa;
+}
+
+.keyboard .row div.spacer {
+	width: calc(var(--keyWidth) * 4.54);
+	background: none;
+}
+
+.keyboard .row div.space {
+	width: calc(var(--keyWidth) * 5.6);
+	/* background: none; */
+}
+
+.keyboard .row div.tab {
+	width: var(--tabWidth);
+}
+
+.keyboard .row div.capsLock {
+	width: calc(var(--tabWidth) * 1.31);
+}
+
+.keyboard .row div.return {
+	width: calc(var(--tabWidth) * 1.31);
+}
+
+.keyboard .row div.shift {
+	width: calc(var(--tabWidth) * 1.31*1.33);
+}
+
+.keyboard .row div.delete {
+	width: calc(var(--tabWidth));
+}
