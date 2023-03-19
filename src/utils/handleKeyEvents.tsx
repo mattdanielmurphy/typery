@@ -2,7 +2,7 @@
 
 import { SetStateAction, useEffect } from 'react'
 
-export function useKeyEvents(
+export function handleKeyEvents(
 	setShiftHeld: {
 		(value: SetStateAction<boolean>): void
 		(arg0: boolean): void
@@ -22,7 +22,9 @@ export function useKeyEvents(
 			const { key } = e
 			if (key === 'Shift') {
 				setShiftHeld(false)
-				// ? remove instances of keys being held only because of shift key being held as well
+				// ? remove instances of keys being held when changing case
+				// should change how values are stored--whether shift is being held shouldn't change the key name of the key
+				// this works just fine however
 				setKeysHeld({})
 			} else {
 				setKeysHeld((keysHeld: any) => ({ ...keysHeld, [key]: false }))

@@ -2,7 +2,7 @@
 
 import { Keyboard } from '@/components/Keyboard'
 import { TextToType } from '@/components/TextToType'
-import { useKeyEvents } from '../hooks/useKeyEvents'
+import { handleKeyEvents } from '../utils/handleKeyEvents'
 import { useState } from 'react'
 
 export function Typery() {
@@ -10,7 +10,12 @@ export function Typery() {
 	//? Handle keypresses
 	const [shiftHeld, setShiftHeld] = useState(false)
 	const [keysHeld, setKeysHeld] = useState<{ [key: string]: boolean }>({})
-	useKeyEvents(setShiftHeld, setKeysHeld)
+	const [textIndex, setTextIndex] = useState(0)
+
+	handleKeyEvents(setShiftHeld, setKeysHeld)
+
+	//! TYPING PROGRESS
+	const [remainingString, setRemainingString] = useState(text)
 
 	return (
 		<div>
