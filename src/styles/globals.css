@@ -76,8 +76,9 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: black;
+  background: #fff;
+  --purple: #7f00b5;
+  --bright-purple: #b300ff;
 }
 
 a {

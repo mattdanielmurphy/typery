@@ -11,13 +11,19 @@ function Key({
 	keysHeld: { [key: string]: boolean }
 	className?: any
 }) {
+	const isHeld = keysHeld[value]
+	const isLetter = /[a-zA-Z]+/.test(value)
+
+	const computedStyles = {
+		purpleBorder: {
+			border: isHeld ? '1px solid var(--purple)' : '1px solid transparent', //? if key held down, highlight it
+			color: isLetter ? (isHeld ? 'var(--bright-purple)' : '#222') : '#ddd',
+		},
+	}
 	return (
 		<div
 			className={className || styles.standardKey}
-			style={{
-				background: keysHeld[value] ? '#321a4c' : '#0d0d0d', //? if key held down, highlight it
-				color: /[a-zA-Z]/.test(value) ? '#aaa' : '#444',
-			}}
+			style={computedStyles.purpleBorder}
 		>
 			{value}
 		</div>

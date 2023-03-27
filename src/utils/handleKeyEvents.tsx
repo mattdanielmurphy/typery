@@ -15,11 +15,23 @@ export function handleKeyEvents(
 	useEffect(() => {
 		function handleKeydown(e: KeyboardEvent) {
 			const { key } = e
+
+			const modifierKeyHeld = e.ctrlKey || e.altKey || e.metaKey
+			if (modifierKeyHeld) return //? so browser keyboard shortcuts still work
+			//? else:
+			e.preventDefault()
+
 			if (key === 'Shift') setShiftHeld(true)
 			setKeysHeld((keysHeld: any) => ({ ...keysHeld, [key]: true }))
 		}
 		function handleKeyup(e: KeyboardEvent) {
 			const { key } = e
+
+			const modifierKeyHeld = e.ctrlKey || e.altKey || e.metaKey
+			if (modifierKeyHeld) return //? so browser keyboard shortcuts still work
+			//? else:
+			e.preventDefault()
+
 			if (key === 'Shift') {
 				setShiftHeld(false)
 				// ? remove instances of keys being held when changing case
@@ -27,7 +39,11 @@ export function handleKeyEvents(
 				// this works just fine however
 				setKeysHeld({})
 			} else {
-				setKeysHeld((keysHeld: any) => ({ ...keysHeld, [key]: false }))
+				setKeysHeld((keysHeld: any) => {
+					const newKeysHeld = { ...keysHeld }
+					delete newKeysHeld[key]
+					return newKeysHeld
+				})
 			}
 		}
 		function handleBlur() {
