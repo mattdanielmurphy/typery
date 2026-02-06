@@ -1,33 +1,45 @@
-import React from 'react'
-import styled, { ThemeProvider } from 'styled-components'
-import { backgroundColor, textColor } from './theme'
-import cookies from 'next-cookies'
+import { backgroundColor, textColor } from "./theme"
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
+
+import React from "react"
+import cookies from "next-cookies"
 
 const ThemeToggleContext = React.createContext()
-const defaultMode = 'light'
+const defaultMode = "light"
+
+const GlobalStyle = createGlobalStyle`
+	html, body {
+		background-color: ${backgroundColor};
+		color: ${textColor};
+		margin: 0;
+		padding: 0;
+		min-height: 100%;
+		transition: background-color 0.3s ease;
+	}
+`
 
 export const useTheme = () => React.useContext(ThemeToggleContext)
 
 export const MyThemeProvider = ({ children }) => {
-	const [ themeState, setThemeState ] = React.useState({ mode: defaultMode })
+	const [themeMode, setThemeMode] = React.useState("light")
 
-	const setTheme = (mode = defaultMode) => {
-		// set cookie
-		setThemeState({ mode })
-	}
+	React.useEffect(() => {
+		const mql = window.matchMedia("(prefers-color-scheme: dark)")
+		const handleChange = (e) => setThemeMode(e.matches ? "dark" : "light")
 
-	const toggle = () => {
-		const mode = themeState.mode === 'light' ? `dark` : `light`
-		setTheme(mode)
-	}
+		setThemeMode(mql.matches ? "dark" : "light")
+		mql.addListener(handleChange)
+		return () => mql.removeListener(handleChange)
+	}, [])
 
 	return (
-		<ThemeToggleContext.Provider value={{ toggle: toggle }}>
+		<ThemeToggleContext.Provider value={{ mode: themeMode }}>
 			<ThemeProvider
 				theme={{
-					mode: themeState.mode
+					mode: themeMode,
 				}}
 			>
+				<GlobalStyle />
 				<Wrapper>{children}</Wrapper>
 			</ThemeProvider>
 		</ThemeToggleContext.Provider>
@@ -43,7 +55,7 @@ const Wrapper = styled.div`
 	left: 0;
 	right: 0;
 	top: 0;
-	font-family: 'Baloo Bhaina 2';
+	font-family: "Baloo Bhaina 2";
 	font-size: 1.1em;
 `
 

@@ -1,8 +1,9 @@
-import React from 'react'
-import Link from 'next/link'
-import styled, { withTheme } from 'styled-components'
-import { useTheme } from '../theme'
-import { ToggleNightModeButton } from '.'
+import styled, { withTheme } from "styled-components"
+
+import Link from "next/link"
+import React from "react"
+import ToggleNightModeButton from "./ToggleNightModeButton"
+import { useTheme } from "../theme"
 
 const links = [
 	// { href: 'multiplayer', label: 'Multiplayer Mode' },
@@ -10,7 +11,7 @@ const links = [
 	// { href: 'custom', label: 'Custom Text Mode' }
 ].map((link) => ({
 	...link,
-	key: `nav-link-${link.href}-${link.label}`
+	key: `nav-link-${link.href}-${link.label}`,
 }))
 
 const Nav = (props) => {
@@ -19,9 +20,7 @@ const Nav = (props) => {
 	return (
 		<NavContainer {...props}>
 			<ul>
-				<li>
-					<ToggleNightModeButton theme={props.theme} themeToggle={themeToggle} />
-				</li>
+				{/* Dark mode is now system-synched */}
 				{links.map(({ key, href, label }) => (
 					<li key={key}>
 						<Link href={href}>
@@ -54,9 +53,9 @@ const NavContainer = styled.nav`
 		font-size: 13px;
 		padding: 1.4em 1.6em 1.4em 1.6em;
 		text-transform: uppercase;
-		letter-spacing: .05em;
+		letter-spacing: 0.05em;
 		font-weight: 700;
-		border-radius: .4em;
+		border-radius: 0.4em;
 		background: ${(props) => props.theme.textColor};
 	}
 `

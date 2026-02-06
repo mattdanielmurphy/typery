@@ -1,3 +1,2 @@
-import * as theme from './theme'
-import { MyThemeProvider, useTheme } from './ThemeContext'
-module.exports = { ...theme, MyThemeProvider, useTheme }
+export * from "./theme"
+export { MyThemeProvider, useTheme } from "./ThemeContext"

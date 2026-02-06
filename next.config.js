@@ -1,26 +1,10 @@
-// const withSass = require('@zeit/next-sass')
-// const withCss = require('@zeit/next-css')
-const withFonts = require('next-fonts')
+const withFonts = require("next-fonts")
+const path = require("path")
 
 module.exports = withFonts({
 	webpack(config, options) {
+		config.resolve.alias["react"] = path.resolve(__dirname, "node_modules", "react")
+		config.resolve.alias["react-dom"] = path.resolve(__dirname, "node_modules", "react-dom")
 		return config
-	}
+	},
 })
-// module.exports = withFonts(withCss(
-// 	withSass({
-// 		webpack(config, options) {
-// 			const rules = [
-// 				{
-// 					test: /\.scss$/,
-// 					use: [ { loader: 'sass-loader' } ]
-// 				}
-// 			]
-
-// 			return {
-// 				...config,
-// 				module: { ...config.module, rules: [ ...config.module.rules, ...rules ] }
-// 			}
-// 		}
-// 	})
-// ))
